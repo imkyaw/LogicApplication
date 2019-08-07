@@ -14,8 +14,14 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
+
+        <Spinner
+            android:id="@+id/EmployeeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </Spinner>
         <Button
-            android:id="@+id/goBtn"
+            android:id="@+id/btnSet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Set" />
