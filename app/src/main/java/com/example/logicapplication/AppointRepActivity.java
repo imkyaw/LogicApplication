@@ -1,5 +1,6 @@
 package com.example.logicapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,10 +21,13 @@ public class AppointRepActivity extends AppCompatActivity implements View.OnClic
     Spinner spinner;
     ArrayList<DepartmentStaff> list;
     Command cmd;
+    int code;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointrep);
+        Intent data = getIntent();
+        code = data.getIntExtra("code", 0);
         btnSet=(Button) findViewById(R.id.btnSet);
         btnSet.setOnClickListener(this);
     }
@@ -31,7 +35,7 @@ public class AppointRepActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onStart() {
         super.onStart();
-        cmd = new Command(this, "get", "http://10.0.2.2:64451/DeptHead/GetStaffList", null);
+        cmd = new Command(this, "get", "http://10.0.2.2:64451/DeptHead/GetStaffList", null,code);
         new AsyncToServer().execute(cmd);
     }
 
@@ -51,7 +55,7 @@ public class AppointRepActivity extends AppCompatActivity implements View.OnClic
         catch (Exception e) {
             e.printStackTrace();
         }
-        cmd = new Command(this, "set", "http://10.0.2.2:64451/DeptHead/AppointRep",array);
+        cmd = new Command(this, "set", "http://10.0.2.2:64451/DeptHead/AppointRep",array,code);
         new AsyncToServer().execute(cmd);
     }
 
@@ -59,6 +63,16 @@ public class AppointRepActivity extends AppCompatActivity implements View.OnClic
     public void onServerResponse(Command jsonObj) {
         if (jsonObj == null)
             return;
+        try {
+            if(jsonObj.data.getJSONObject(0).getString("isok")!=null){
+                Toast.makeText(getApplicationContext(),jsonObj.data.getJSONObject(0).getString("isok"),Toast.LENGTH_LONG).show();
+                Intent intent=new Intent(this,MainActivity.class);
+                startActivity(intent);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         spinner=this.findViewById(R.id.EmployeeName);
         list=new ArrayList<DepartmentStaff>();
         try {

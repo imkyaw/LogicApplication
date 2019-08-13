@@ -15,9 +15,20 @@
         android:layout_gravity="center">
 
         <Button
-            android:id="@+id/goBtn"
+            android:id="@+id/RepBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set" />
+            android:text="Appoint Representative" />
+        <Button
+            android:id="@+id/LocationBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Appoint Location" />
+        <Button
+            android:id="@+id/HeadBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Authorize Staff" />
+
     </LinearLayout>
 </LinearLayout>

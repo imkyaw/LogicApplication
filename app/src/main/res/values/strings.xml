@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LogicApplication</string>
+    <string name="password">password</string>
+    <string name="logic_university">LOGIC</string>
+    <string name="username">username</string>
+    <string name="namelabel">UserName</string>
+    <string name="passwordlabel">Password</string>
+    <string name="login">Log In</string>
 </resources>
